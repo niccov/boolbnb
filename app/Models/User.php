@@ -17,10 +17,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function apartments(){
+        return $this->belongsToMany(Apartment::class);
+    }
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'birth_date'
     ];
 
     /**
