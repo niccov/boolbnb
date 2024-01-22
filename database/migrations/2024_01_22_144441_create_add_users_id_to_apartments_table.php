@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sponsorships', function (Blueprint $table) {
-            $table->id();
+        Schema::table('apartments', function (Blueprint $table) {
 
-            $table->string('name', 100);
-            $table->decimal('price', 10, 2);
-            $table->time('duration');
+            $table->unsignedBigInteger('user_id')->nullable();
 
-            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -31,6 +28,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsorships');
+        Schema::table('apartments', function (Blueprint $table){
+            $table->dropForeign(['user_id']);
+            $table->dropColumn(['user_id']);
+        });
     }
 };
