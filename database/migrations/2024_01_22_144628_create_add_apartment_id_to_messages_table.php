@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('add_apartment_id_to_messages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('apartment_id');
+            $table->unsignedBigInteger('message_id');
             $table->timestamps();
+
+            // Definizione delle chiavi esterne
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('add_apartment_id_to_messages');
