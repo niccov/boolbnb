@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
+            $table->string('ip');
+            $table->date('date');
+
             $table->timestamps();
         });
     }
