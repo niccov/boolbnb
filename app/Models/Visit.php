@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Visit extends Model
 {
     use HasFactory;
+
+    public function apartments(){
+        return $this->belongsTo(Apartment::class);
+    }
+
+    protected $fillable = [
+        'ip',
+        'date'
+    ];
 }
