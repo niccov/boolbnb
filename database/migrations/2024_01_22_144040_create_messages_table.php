@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50);
+            $table->string('lastname', 50);
+            $table->string('email', 200);
+            $table->string('text', 200);
+            $table->unsignedBigInteger('apartment_id')->nullable();
             $table->timestamps();
+             // Definizione della chiave esterna
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
         });
     }
 
