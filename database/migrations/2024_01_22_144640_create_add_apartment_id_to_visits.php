@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('add_apartment_id_to_visits', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('visits', function (Blueprint $table) {
+            $table->unsignedBigInteger('apartment_id')->nullable()->after('date');
+
+            $table->foreign('apartment_id')
+                ->references('id')
+                ->on('apartments')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -26,6 +31,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('add_apartment_id_to_visits');
+        Schema::table('visits', function (Blueprint $table){
+            $table->dropForeign(['apartment_id']);
+            $table->dropColumn(['apartment_id']);
+        });
     }
 };
