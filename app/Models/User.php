@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
 
     public function apartments(){
-        return $this->belongsToMany(Apartment::class);
+        return $this->hasMany(Apartment::class);
     }
 
     protected $fillable = [

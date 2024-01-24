@@ -19,11 +19,11 @@ class Apartment extends Model
     }
 
     public function messages(){
-        return $this->belongsToMany(Message::class);
+        return $this->hasMany(Message::class);
     }
 
     public function visits(){
-        return $this->belongsToMany(Visit::class);
+        return $this->hasMany(Visit::class);
     }
 
     public function sponsorships(){
