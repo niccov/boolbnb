@@ -19,22 +19,26 @@ class UsersTableSeeder extends Seeder
         $users = [
 
             [
-                "name"      => "Gino Buonvino",
+                "name"      => "Gino",
+                "lastname"      => "Buonvino",
                 "email"     => "gino.buonvino@gmail.com",
                 "password"  => Hash::make('gino9696'),
             ],
             [
-                "name"      => "Donald Trump",
+                "name"      => "Donald",
+                "lastname"      => "Trump",
                 "email"     => "donald.trump@gmail.com",
                 "password"  => Hash::make('donald96'),
             ],
             [
-                "name"      => "Martina Smeraldi",
+                "name"      => "Martina",
+                "lastname"      => "Smeraldi",
                 "email"     => "martina.smeraldi@gmail.com",
                 "password"  => Hash::make('martina96'),
             ],
             [
-                "name"      => "Cristiano Ronaldo",
+                "name"      => "Cristiano",
+                "lastname"  => "Ronaldo",
                 "email"     => "cristiano.ronaldo@gmail.com",
                 "password"  => Hash::make('cristiano96'),
             ],
