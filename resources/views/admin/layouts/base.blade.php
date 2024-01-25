@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
-    <title>Deliveboo</title>
+    <title>BoolBnb</title>
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div class="container mx-auto">
-        @include('admin.partials.header')
+        {{-- @include('admin.partials.header') --}}
         <main class="mt-4">
             @yield('contents')
         </main>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApartmentController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/dashboard', [PageController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['auth', 'verified'])
+    ->prefix('admin')
+    ->name('admin.')
     ->group(function () {
         Route::resource('apartments', ApartmentController::class);
-        Route::get('/dashboard')->name('dashboard');
+        // Route::get('/dashboard')->name('dashboard');
     });
 
 

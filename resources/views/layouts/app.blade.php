@@ -45,6 +45,10 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+
+                        </li>
+                        <li  class="nav-item">
+                            <a class="dropdown-item" href="{{ route('admin.apartments.index') }}">Apartments Index</a>
                         </li>
                     </ul>
 
