@@ -81,7 +81,7 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
 
-        $apartment->upadate($form_data);
+        $apartment->update($form_data);
 
         $apartment->save();
 
