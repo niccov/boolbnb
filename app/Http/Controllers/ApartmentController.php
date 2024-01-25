@@ -15,7 +15,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::all();
+        return view('', compact('apartments'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**
@@ -36,7 +37,13 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        //
+        $form_data = $request->all();
+
+        $apartment = new Apartment();
+        $apartment->fill($form_data);
+        $apartment->save();
+
+        return redirect()->route('', $apartment->id);
     }
 
     /**
@@ -45,9 +52,10 @@ class ApartmentController extends Controller
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show($id)
     {
-        //
+        $apartment = Apartment::findOrFail($id);
+        return view ('', compact('apartment'));
     }
 
     /**
@@ -58,7 +66,7 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        return view('', compact('apartment'));
     }
 
     /**
@@ -70,7 +78,13 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $form_data = $request->all();
+
+        $apartment->upadate($form_data);
+
+        $apartment->save();
+
+        return redirect()->route('', $apartment->id);
     }
 
     /**
@@ -81,6 +95,8 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return redirect()->route('');
     }
 }
