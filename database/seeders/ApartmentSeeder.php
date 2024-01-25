@@ -68,7 +68,9 @@ class ApartmentSeeder extends Seeder
                 'lat' => $data['lat'],
                 'lon' => $data['lon'],
                 'photo' => $faker->imageUrl(640, 480, 'apartments', true),
-                'visible' => $faker->boolean,
+                'is_visible' => $faker->boolean,
+                'is_available' => $faker->boolean,
+                'is_sponsored' => $faker->boolean,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

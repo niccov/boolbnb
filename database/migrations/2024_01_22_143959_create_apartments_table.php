@@ -24,7 +24,10 @@ return new class extends Migration
             $table->decimal('lat');
             $table->decimal('lon');
             $table->string('photo');
-            $table->boolean('visible');
+            $table->boolean('is_visible');
+            $table->boolean('is_available');
+            $table->boolean('is_sponsored');
+
             
 
             $table->timestamps();
