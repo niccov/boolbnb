@@ -40,7 +40,10 @@ class Apartment extends Model
         'lat',
         'lon',
         'photo',
-        'visible'
+        'is_visible',
+        'is_available',
+        'is_sponsored'
+
     ];
 
 }
