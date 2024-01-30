@@ -24,6 +24,8 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
+        Route::post('apartments/toggle-visibility/{apartment_id}', [ApartmentController::class, 'toggleApartmentVisibility'])->name('apartments.toggleApartmentVisibility');
+
         Route::resource('apartments', ApartmentController::class);
         // Route::get('/dashboard')->name('dashboard');
     });
@@ -37,4 +39,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

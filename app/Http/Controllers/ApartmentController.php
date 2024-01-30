@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apartment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
-use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -16,7 +17,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-         $apartments =  Auth::user()->apartments;
+        $apartments =  Auth::user()->apartments;
         return  view('admin.apartments.index', compact('apartments'));
     }
 
@@ -27,7 +28,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('');
+        return view('admin.apartments.create');
     }
 
     /**
@@ -38,13 +39,14 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
 
         $apartment = new Apartment();
         $apartment->fill($form_data);
+        $apartment->user_id = Auth::id(); // ogni appartamento collegato all'utente che lo crea.
         $apartment->save();
 
-        return redirect()->route('', $apartment->id);
+        return redirect()->route('admin.apartments.index')->with('success', 'Appartamento creato con successo.');
     }
 
     /**
@@ -56,7 +58,7 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::findOrFail($id);
-        return view ('admin.apartments.show', compact('apartment'));
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
@@ -85,7 +87,7 @@ class ApartmentController extends Controller
 
         $apartment->save();
 
-        return redirect()->route('', $apartment->id);
+        return redirect()->route('admin.apartments.show', $apartment->id);;
     }
 
     /**
@@ -98,6 +100,16 @@ class ApartmentController extends Controller
     {
         $apartment->delete();
 
-        return redirect()->route('');
+        return redirect()->route('admin.apartments.index')->with('delete_success', $apartment);
+    }
+
+    public function toggleApartmentVisibility(Request $request, $apartment_id)
+    {
+        $apartment = Apartment::find($apartment_id);
+        if ($apartment) {
+            $apartment->is_visible = !$apartment->is_visible; // Inverte lo stato corrente
+            $apartment->save();
+        }
+        return redirect()->back(); // reindirizza alla dashboard
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreApartmentRequest extends FormRequest
@@ -13,7 +14,7 @@ class StoreApartmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -25,6 +26,18 @@ class StoreApartmentRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required|string|max:255',
+            'rooms' => 'required|integer|min:1',
+            'beds' => 'required|integer|min:1',
+            'bathrooms' => 'required|integer|min:1',
+            'mq' => 'required|numeric|min:1',
+            'address' => 'required|string|max:255',
+            'lat' => 'required|numeric',
+            'lon' => 'required|numeric',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // 'nullable'
+            'is_visible' => 'sometimes|boolean',
+            'is_available' => 'sometimes|boolean',
+            'is_sponsored' => 'sometimes|boolean',
         ];
     }
 }
