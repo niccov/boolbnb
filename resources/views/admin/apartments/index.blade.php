@@ -30,6 +30,7 @@
                             <td>{{ $apartment->is_visible ? 'Sì' : 'No' }}</td>
                             <td>{{ $apartment->is_available ? 'Sì' : 'No' }}</td>
                             <td>{{ $apartment->is_sponsored ? 'Sì' : 'No' }}</td>
+                            
                         </tr>
                     @endforeach
                 </tbody>
