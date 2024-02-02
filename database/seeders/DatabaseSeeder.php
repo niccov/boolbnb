@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ApartmentSeeder::class,
             MessageSeeder::class,
+            ServiceSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();
